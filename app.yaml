@@ -1,0 +1,22 @@
+runtime: python311  
+
+entrypoint: gunicorn -b :$PORT main:app  
+
+instance_class: F2  
+
+env_variables:
+  USERNAME: 'admin'
+  PASSWORD: 'admin123'
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: auto  
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 10
+

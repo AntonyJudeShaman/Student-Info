@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="w-full">
+    <header class="text-center mx-auto d-block py-10 max-w-md">
+      <h1 class="text-4xl font-bold">Exam Seating Arrangement</h1>
+    </header>
+    <main
+      class="max-w-md mx-auto d-block z-10 ml-5 mr-5 lg:mx-auto rounded-lg border-2 border-green-500 shadow p-6"
+    >
+      <section class="mb-8">
+        <h2 class="text-3xl mb-4 text-purple-500 font-bold text-center">
+          Login
+        </h2>
+        <form action="/login" method="POST" class="space-y-4">
+          <div class="flex flex-col">
+            <label for="username" class="font-semibold">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              class="border-2 text-black border-indigo-500 px-4 py-2 rounded-lg"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="password" class="font-semibold">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              class="border-2 text-black border-indigo-500 px-4 py-2 rounded-lg"
+            />
+          </div>
+          <button
+            type="submit"
+            class="px-4 py-2 font-semibold rounded-lg transition duration-1000"
+          >
+            Login
+          </button>
+        </form>
+        {% if error_message %}
+        <p class="text-red-500 mt-4">{{ error_message }}</p>
+        {% endif %}
+      </section>
+      <div class="horizontal-line">
+        <div class="line"></div>
+        <span class="or-text">OR</span>
+        <div class="line"></div>
+      </div>
+      <section>
+        <h2 class="text-2xl mb-4 mt-4">View Classroom</h2>
+        <a href="/view_classroom" class="block">
+          <button
+            class="text-zinc-200 px-4 py-2 rounded-lg font-semibold transition duration-1000"
+          >
+            View Classroom
+          </button>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>

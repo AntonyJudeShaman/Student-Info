@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Seating Order</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="">
+    <main>
+      <section
+        class="classroom max-w-lg ml-5 mr-5 lg:mx-auto d-block p-8 border-2 border-indigo-500 rounded-xl my-60 shadow-lg"
+      >
+        <a
+          href="#"
+          onclick="history.back();"
+          class="text-white text-2xl  flex-row absolute top-8 left-8"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1.5em"
+            viewBox="0 0 448 512"
+            fill="orange"
+          >
+            <path
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+            />
+          </svg>
+        </a>
+        <h2 class="text-2xl font-semibold mb-4">View Classroom</h2>
+        <form action="/view_classroom" method="POST" class="space-y-4">
+          <div class="flex flex-col">
+            <label for="roll_no" class="font-semibold"
+              >Enter Roll Number:</label
+            >
+            <input
+              type="text"
+              id="roll_no"
+              name="roll_no"
+              required
+              class="border text-black border-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+          >
+            View
+          </button>
+        </form>
+        {% if student_data %} {% if student_data[0] == 'No data available' %}
+        <p class="text-red-500 mt-4">{{ student_data[0] }}</p>
+        {% else %}
+        <p class="mt-4">Name: {{ student_data[0] }}</p>
+        <p>Classroom: {{ student_data[1] }}</p>
+        {% endif %} {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
